@@ -1,5 +1,5 @@
 package com.julian.tickets.model;
 
-public enum Status {
+public enum TicketStatus {
     ABIERTO, CERRADO
 }
