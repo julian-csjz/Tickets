@@ -1,6 +1,6 @@
 #FileLock
-#Mon Nov 17 17:38:29 GMT-05:00 2025
+#Mon Nov 17 18:30:29 GMT-05:00 2025
 hostName=jucasas-B948H94.bbrouter
-id=19a93f837237637263af711c0c858cb5297be36aea2
+id=19a9427d2953193ba8fefaf92882d73a8dfa339ac43
 method=file
-server=192.168.1.11\:60936
+server=192.168.1.11\:54047

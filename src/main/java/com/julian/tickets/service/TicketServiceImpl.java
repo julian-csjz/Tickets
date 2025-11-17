@@ -33,7 +33,7 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    @CacheEvict(cacheNames = "TicketsPerUser", key = "#dto.userId")
+    @CacheEvict(cacheNames = "TicketsPerUser", allEntries = true)
     public TicketResponseDTO createTicket(TicketRequestDTO dto) {
         User usuario = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new BadRequestException("The specified user doesn't exist"));
@@ -44,7 +44,7 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
-    @CacheEvict(cacheNames = "TicketsPerUser", key = "#dto.userId")
+    @CacheEvict(cacheNames = "TicketsPerUser", allEntries = true)
     public TicketResponseDTO updateTicket(UUID id, TicketRequestDTO dto) {
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Ticket wit id " + id + "not found"));
