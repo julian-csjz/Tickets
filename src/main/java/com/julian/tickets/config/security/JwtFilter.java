@@ -1,4 +1,4 @@
-package com.julian.tickets.config;
+package com.julian.tickets.config.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

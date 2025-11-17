@@ -16,7 +16,7 @@ public class Ticket {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    private User user;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDate = LocalDateTime.now();
@@ -26,7 +26,7 @@ public class Ticket {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TicketStatus status = TicketStatus.ABIERTO;
+    private TicketStatus status = TicketStatus.OPEN;
 
     public UUID getId() {
         return id;
@@ -44,12 +44,12 @@ public class Ticket {
         this.description = description;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User userId) {
+        this.user = userId;
     }
 
     public LocalDateTime getCreateDate() {

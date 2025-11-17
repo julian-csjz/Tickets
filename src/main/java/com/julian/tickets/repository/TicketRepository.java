@@ -16,5 +16,6 @@ public interface TicketRepository extends JpaRepository<Ticket, UUID>, JpaSpecif
 
     List<Ticket> findByUserId_Id(UUID userId);
 
-    List<Ticket> findByStatusAndUserId(TicketStatus status, User userId);
+    List<Ticket> findByUser_IdAndStatus(UUID userId, TicketStatus status);
+
 }

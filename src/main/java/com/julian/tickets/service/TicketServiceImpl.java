@@ -12,6 +12,8 @@ import com.julian.tickets.repository.TicketRepository;
 import com.julian.tickets.repository.UserRepository;
 import com.julian.tickets.repository.specification.TicketSpecification;
 import jakarta.transaction.Transactional;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -31,6 +33,7 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
+    @CacheEvict(cacheNames = "TicketsPerUser", key = "#dto.userId")
     public TicketResponseDTO createTicket(TicketRequestDTO dto) {
         User usuario = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new BadRequestException("The specified user doesn't exist"));
@@ -41,20 +44,26 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
+    @CacheEvict(cacheNames = "TicketsPerUser", key = "#dto.userId")
     public TicketResponseDTO updateTicket(UUID id, TicketRequestDTO dto) {
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Ticket wit id " + id + "not found"));
 
-        TicketMapper.updateEntity(dto, ticket);
+        User userTicket = userRepository.findById(dto.getUserId())
+                        .orElseThrow(() -> new ResourceNotFoundException("User wit id " + dto.getUserId() + "not found"));
+
+        TicketMapper.updateEntity(dto, ticket, userTicket);
         return TicketMapper.toResponseDTO(ticket);
     }
 
     @Override
+    @CacheEvict(cacheNames = "TicketsPerUser", allEntries = true)
     public void deleteTicket(UUID id) {
         ticketRepository.deleteById(id);
     }
 
     @Override
+    @Cacheable(cacheNames = "TicketsPerUser", key = "#id")
     public TicketResponseDTO getTicketById(UUID id) {
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Ticket wit id " + id + "not found"));
@@ -62,6 +71,7 @@ public class TicketServiceImpl implements TicketService{
     }
 
     @Override
+    @Cacheable(cacheNames = "TicketsPerUser", key = "{#userId, #status}")
     public Page<TicketResponseDTO> getTickets(UUID userId, String status, Pageable pageable) {
         TicketStatus ticketStatus = null;
         if (status != null) {

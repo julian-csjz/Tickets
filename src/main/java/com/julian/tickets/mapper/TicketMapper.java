@@ -12,7 +12,7 @@ public class TicketMapper {
         TicketResponseDTO dto = new TicketResponseDTO();
         dto.setId(ticket.getId());
         dto.setDescription(ticket.getDescription());
-        dto.setUserId(ticket.getUserId().getId());
+        dto.setUserId(ticket.getUser() != null ? ticket.getUser().getId() : null);
         dto.setStatus(ticket.getStatus());
         dto.setCreateDate(ticket.getCreateDate());
         dto.setUpdateDate(ticket.getUpdateDate());
@@ -23,13 +23,14 @@ public class TicketMapper {
     public static Ticket toEntity(TicketRequestDTO dto, User user) {
         Ticket ticket = new Ticket();
         ticket.setDescription(dto.getDescription());
-        ticket.setUserId(user);
+        ticket.setUser(user);
         ticket.setStatus(dto.getStatus());
         return ticket;
     }
 
-    public static void updateEntity(TicketRequestDTO dto, Ticket ticket) {
+    public static void updateEntity(TicketRequestDTO dto, Ticket ticket, User userTicket) {
         ticket.setDescription(dto.getDescription());
         ticket.setStatus(dto.getStatus());
+        ticket.setUser(userTicket);
     }
 }

@@ -1,4 +1,4 @@
-package com.julian.tickets.config;
+package com.julian.tickets.config.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
