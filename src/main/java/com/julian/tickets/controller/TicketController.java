@@ -30,7 +30,7 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
-    @Operation(summary = "Create ua ticket", description = "Create a new ticket assigned to a user")
+    @Operation(summary = "Create a ticket", description = "Create a new ticket assigned to a user")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Ticket created successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid data")

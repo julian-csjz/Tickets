@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
 @Schema(description = "DTO for user authentication (login)")
-public class LoginDto {
+public class LoginRequestDto {
 
     @NotBlank
     @Schema(description = "Username for login", example = "camilo.gomez", required = true)
