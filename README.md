@@ -142,6 +142,21 @@ Incluye:
 - Unitarias (Mockito)
 - Integración (MockMvc + JWT real)
 
+## DOCUMENTACIÓN OPENAPI / SWAGGER
+
+Este proyecto incluye documentación interactiva generada automáticamente mediante OpenAPI utilizando springdoc-openapi.
+
+Esto permite:
+
+Visualizar todos los endpoints disponibles
+
+Consultar esquemas, DTOs y códigos de respuesta
+
+### URL DE SWAGGER
+
+Swagger UI
+http://localhost:8080/swagger-ui/index.html
+
 ## Stack
 
 - Java 24
