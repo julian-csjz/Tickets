@@ -42,8 +42,8 @@ http://localhost:8080
 
 ### 1) Registrar un usuario autorizado
 
-curl -X POST http://localhost:8080/api/auth/register \
--H "Content-Type: application/json" \
+curl -X POST http://localhost:8080/api/auth/register 
+-H "Content-Type: application/json" 
 -d '{
 "username": "admin",
 "password": "12345"
