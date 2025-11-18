@@ -51,8 +51,8 @@ curl -X POST http://localhost:8080/api/auth/register
 
 ### 2) Login → devuelve JWT
 
-curl -X POST http://localhost:8080/api/auth/login \
--H "Content-Type: application/json" \
+curl -i -X POST http://localhost:8080/api/auth/login 
+-H "Content-Type: application/json" 
 -d '{
 "username": "admin",
 "password": "12345"
@@ -67,9 +67,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
 
 ### Crear usuario
 
-curl -X POST http://localhost:8080/users \
--H "Authorization: Bearer <TOKEN>" \
--H "Content-Type: application/json" \
+curl -X POST http://localhost:8080/users 
+-H "Authorization: Bearer <TOKEN>" 
+-H "Content-Type: application/json" 
 -d '{
 "name": "Julian",
 "lastname": "Casas"
@@ -77,14 +77,14 @@ curl -X POST http://localhost:8080/users \
 
 ### Obtener usuarios
 
-curl -X GET http://localhost:8080/users \
+curl -X GET http://localhost:8080/users 
 -H "Authorization: Bearer <TOKEN>"
 
 ### Actualizar usuario por ID
 
-curl -X PUT http://localhost:8080/users/e9b1a67d-4f21-4c9b-9a22-12ab34cd5001 \
--H "Authorization: Bearer <TOKEN>" \
--H "Content-Type: application/json" \
+curl -X PUT http://localhost:8080/users/e9b1a67d-4f21-4c9b-9a22-12ab34cd5001 
+-H "Authorization: Bearer <TOKEN>" 
+-H "Content-Type: application/json" 
 -d '{
 "name": "NuevoNombre",
 "lastname": "NuevoApellido"
@@ -94,9 +94,9 @@ curl -X PUT http://localhost:8080/users/e9b1a67d-4f21-4c9b-9a22-12ab34cd5001 \
 
 ### Crear ticket
 
-curl -X POST http://localhost:8080/tickets \
--H "Authorization: Bearer <TOKEN>" \
--H "Content-Type: application/json" \
+curl -X POST http://localhost:8080/tickets 
+-H "Authorization: Bearer <TOKEN>" 
+-H "Content-Type: application/json" 
 -d '{
 "description": "No funciona el login",
 "userId": "UUID-del-usuario",
@@ -105,19 +105,19 @@ curl -X POST http://localhost:8080/tickets \
 
 ### Obtener todos los tickets
 
-curl -X GET http://localhost:8080/tickets \
+curl -X GET http://localhost:8080/tickets 
 -H "Authorization: Bearer <TOKEN>"
 
 ### Filtrar por user_id o status
 
-curl -X GET "http://localhost:8080/tickets?userId=1&status=OPEN" \
+curl -X GET "http://localhost:8080/tickets?userId=1&status=OPEN" 
 -H "Authorization: Bearer <TOKEN>"
 
 ### Actualizar ticket
 
-curl -X PUT http://localhost:8080/tickets/e9b1a67d-4f21-4c9b-9a22-12ab34cd5001 \
--H "Authorization: Bearer <TOKEN>" \
--H "Content-Type: application/json" \
+curl -X PUT http://localhost:8080/tickets/e9b1a67d-4f21-4c9b-9a22-12ab34cd5001 
+-H "Authorization: Bearer <TOKEN>" 
+-H "Content-Type: application/json" 
 -d '{
 "description": "Actualizado",
 "userId": "UUID",
